@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
     has_many :articles
     
+    enum role: { superadmin: 0, normal: 1, writer: 2 }
     validates :name, presence: true
     validates :email, presence: true, uniqueness: true
 end

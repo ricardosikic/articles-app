@@ -7,20 +7,22 @@ module Mutations
       end
   
       argument :name, String, required: true
+      argument :role, Int, required: true
       argument :auth_provider, AuthProviderSignupData, required: false
   
       type Types::UserType
 
       field :user, Types::UserType, null: false
   
-      def resolve(name: nil, auth_provider: nil)
+      def resolve(name: nil, auth_provider: nil, role: nil)
         user = User.create!(
           name: name,
+          role: role,
           email: auth_provider&.[](:credentials)&.[](:email),
           password: auth_provider&.[](:credentials)&.[](:password)
         )
 
-        { user: user }
+        return {user: user}
       end
     end
 end

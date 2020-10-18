@@ -5,5 +5,6 @@ module Types
     field :lastname, String, null: false
     field :email, String, null: false
     field :city, String, null: false
+    field :role, String, null: false
   end
 end
